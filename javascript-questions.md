@@ -24,14 +24,42 @@
 
 
 
-| Question          | Result | Reason                                    |
-| ----------------- | ------ | ----------------------------------------- |
-| +0 == -0          | true   | Zeros treated same w3schools​             |
-| null == undefined | true   | Special rule w3schools​                   |
-| [] == 0           | true   | [] → "" → 0 developer.mozilla​            |
-| {} == {}          | false  | Different references w3schools​           |
-| "" == 0           | true   | Empty string → 0 w3schools​               |
-| null == false     | false  | null doesn't coerce to boolean w3schools​ |
+| Expression                         | Result | Reason                                                                               |
+| ---------------------------------- | ------ | ------------------------------------------------------------------------------------ |
+| +0 == -0                           | true   | Both are numeric zero; == and === treat them as the same value. developer.mozilla+1​ |
+| Object.is(+0, -0)                  | false  | Object.is distinguishes the sign of zero. stackoverflow+1​                           |
+| NaN == NaN                         | false  | NaN is never equal to itself for == or ===. developer.mozilla+1​                     |
+| Object.is(NaN, NaN)                | true   | Object.is has a special rule that treats NaN as equal to NaN. stackoverflow+1​       |
+| null == undefined                  | true   | Special loose‑equality rule: only equal to each other. developer.mozilla+1​          |
+| null == 0                          | false  | == does not coerce null to number. stackoverflow+1​                                  |
+| null >= 0                          | true   | Relational >= converts null to 0, so 0 >= 0. stackoverflow+1​                        |
+| null > 0                           | false  | null → 0; 0 > 0 is false. stackoverflow​                                             |
+| 0 == undefined                     | false  | No loose‑equality rule between number and undefined. developer.mozilla+1​            |
+| true == 1                          | true   | true → 1; compare 1 == 1. developer.mozilla+1​                                       |
+| false == 0                         | true   | false → 0; compare 0 == 0. developer.mozilla+1​                                      |
+| true == "1"                        | true   | true → 1, "1" → 1; compare 1 == 1. developer.mozilla+1​                              |
+| false == ""                        | true   | false → 0, "" → 0; compare 0 == 0. developer.mozilla+1​                              |
+| false == "0"                       | true   | false → 0, "0" → 0. developer.mozilla+1​                                             |
+| "5" == 5                           | true   | "5" → number 5. developer.mozilla+1​                                                 |
+| "" == 0                            | true   | "" → 0 in numeric coercion. stackoverflow+1​                                         |
+| "  \\n\\t " == 0                   | true   | Whitespace string trims to "" then → 0. javascript+1​                                |
+| "0" == 0                           | true   | "0" → 0. developer.mozilla+1​                                                        |
+| [] == ""                           | true   | [] → "" via toString. developer.mozilla+1​                                           |
+| [] == 0                            | true   | [] → "" → 0. developer.mozilla+1​                                                    |
+| ["1"] == 1                         | true   | ["1"] → "1" → 1. developer.mozilla+1​                                                |
+| [1,2,3] == "1,2,3"                 | true   | Array stringifies to "1,2,3". developer.mozilla​                                     |
+| [] == false                        | true   | [] → "" → 0; false → 0. dev+1​                                                       |
+| ![] == []                          | true   | ![] → false → 0; [] → "" → 0. dev​                                                   |
+| { } == { }                         | false  | Different object references. developer.mozilla+1​                                    |
+| new String("x") == "x"             | true   | Wrapper object → primitive "x". developer.mozilla​                                   |
+| new String("x") == new String("x") | false  | Two distinct objects, no coercion to same reference. developer.mozilla​              |
+| 0 == false                         | true   | false → 0. developer.mozilla+1​                                                      |
+| 0 == ""                            | true   | "" → 0. stackoverflow+1​                                                             |
+| 0 == "0"                           | true   | "0" → 0. developer.mozilla+1​                                                        |
+| 0 == null                          | false  | null only equals undefined in ==. developer.mozilla+1​                               |
+| 0 == undefined                     | false  | No special rule; stays unequal. developer.mozilla+1​                                 |
+| null == false                      | false  | null does not coerce to boolean in ==. developer.mozilla+1​                          |
+| undefined == false                 | false  | undefined only equals null for ==. developer.mozilla+1​                              |
 
 
 
